@@ -28,7 +28,7 @@
 ## 設計書
 使用検討中です
 
-##実装機能リストURL
+## 実装機能リストURL
 https://docs.google.com/spreadsheets/d/155OWGYlXltVyPtpsfJMCti_lXDSub5nd8Dwa8Vv1TwM/edit?usp=sharing
 
 ## 開発環境
