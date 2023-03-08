@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class= "h5 bg-secondary mt-5">ジャンル一覧</div>
+        <table class="col-lg-8 offset-lg-2 mt-4">
+           <thead class="bg-secondary text-center">
+            <tr class="row">
+              <th class="col-lg-1">ID</th>
+              <th class="col-lg-5">ジャンル名</th>
+              <th class="col-lg-3"></th>
+            </tr>
+           </thead>
+
+        <% @genres.each do |genre| %>
+
+
+          <tr>
+            <td class="col-lg-1"><%= genre.id %></td>
+            <td class="col-lg-5"><%= genre.name %></td>
+            <td class="col-lg-3"><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success mt-5' %></td>
+          </tr>
+
+
+        <% end %>
+    </table>
+  </div>
+</div>
