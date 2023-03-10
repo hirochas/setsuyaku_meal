@@ -1,2 +1,23 @@
-<h1>User::Customers#show</h1>
-<p>Find me in app/views/user/customers/show.html.erb</p>
+<div>マイページ</div>
+
+<table>
+  <tr>
+    <th>名前（ニックネーム）</th>
+    <td><%= @customer.name %></td>
+  </tr>
+
+   <tr>
+    <th>メールアドレス</th>
+    <td><%= @customer.email %></td>
+  </tr>
+
+  <tr>
+    <th>会員ステータス</th>
+    <td><%= @customer.is_deleted %></td>
+  </tr>
+</table>
+
+<div>投稿レシピ一覧</div>
+<div>お気に入りレシピ一覧</div>
+
+<div><%= link_to "編集する", edit_customer_path(@customer.id), class: 'btn btn-success mt-5' %></div>

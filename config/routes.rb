@@ -27,14 +27,18 @@ Rails.application.routes.draw do
 
     get "about" => "homes#about", as: "about"
 
-
-    get 'customers/unsubscribe'
-    resources :customers, only: [:show, :edit]
+    get 'customers/my_page' => "customers#show", as: "my_page"
+    get "customers/information/edit" => "customers#edit", as: "edit_customer"
+    patch "customers/information" => "customers#update", as: "customer"
+    get "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+    patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
+    resources :customers, only: [:update]
 
   end
 
   # 管理者用
   namespace :admin do
+    root to: 'homes#top'
     resources :genres, only: [:new, :create, :edit, :index, :update]
     resources :customers, only: [:show, :edit, :index, :update]
 
