@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row">
+        <div class= "col-lg-6 offset-2 h5 mt-5">
+            レシピ詳細
+            <% if @resipe.customer == current_customer %>
+            <div class="col-3"><%= link_to "編集する", edit_resipe_path(@resipe.id), class: 'btn btn-success mt-5' %></div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-3">
+            <%= image_tag @resipe.get_image(150,150) %><br>
+            <table class="mt-5">
+                <tr>
+                  <td class="col-1">作成者</td>
+                  <td class="col-2"><%= @resipe.customer.name %></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                      <!-- いいね機能  -->
+                      <% if customer_signed_in?  %>
+                       <% if @resipe.liked_by?(current_customer) %>
+                           <p><%= link_to resipe_likes_path(@resipe), method: :delete do %>
+                            ♥<%= @resipe.likes.count %> いいね
+                            <% end %> </p>
+                       <% else %>
+                           <p>
+                            <%= link_to resipe_likes_path(@resipe), method: :post do %>
+                            ♡<%= @resipe.likes.count %> いいね
+                            <% end %></p>
+                       <% end %>
+                      <% else %>
+                       <p>いいねをするには会員登録をお願いします。</p>
+                      <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                     <!-- お気に入り機能  -->
+                      <% if customer_signed_in?  %>
+                      <div class="option" >
+                         <% if @resipe.customer != current_customer %>
+                           <% if @resipe.favorited_by?(current_customer) %>
+                            <div class="report-btn">
+                              <p><%=link_to "お気に入り解除", resipe_favorites_path(@resipe.id), method: :delete, class: 'btn btn-primary' %></p>
+                            </div>
+                           <%else%>
+                             <div class="favorite-btn">
+                               <p><%=link_to "お気に入り登録する" ,resipe_favorites_path(@resipe.id), method: :post, class: 'btn btn-primary' %></p>
+                            </div>
+                           <%end%>
+                         <%end%>
+                         <div class="count-btn">
+                           <p><span>お気に入りされた数: </span><%= @resipe.favorites.count %></p>
+                        </div>
+                      <% else %>
+                       <p>※※※お気に入りをするにはユーザー登録をしましょう※※※</p>
+                      </div>
+                      <% end %>
+                  </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-8 offset-1">
+            <table class ="table table-bordered mb-5">
+                <tr>
+                    <th class="col-2">ジャンル</th>
+                    <td><%= @resipe.genre.name %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">レシピ名</th>
+                    <td class="col-5"><%= @resipe.name %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">材料</th>
+                    <td class="col-5"><%= h(@resipe.item).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">材料費</th>
+                    <td class="col-5"><%= @resipe.cost %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">作り方</th>
+                    <td class="col-5"><%= h(@resipe.how_to_cook).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="row mt-5">
+        <div class= "col-lg-6 offset-2 h5 mt-5">
+            コメント一覧
+        </div>
+        <div class="col-6 offset-4 mt-5">
+            <% @comments.each do |f| %>
+            <div>
+               <%= f.comment_content %>
+               <hr>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-6 offset-2">
+            <div class="h6 mt-3">コメントする</div>
+            <%= form_with model: [@resipe, @comment], method: :post do |f| %>
+                <%= f.text_field :comment_content, :size=>"60" %>
+                <br>
+
+                <%= f.submit 'コメントする', class: 'btn btn-success m-5' %>
+            <% end %>
+        </div>
+    </div>
+</div>

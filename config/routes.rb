@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  namespace :customer do
+    end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # 顧客用devise
@@ -25,30 +27,37 @@ Rails.application.routes.draw do
   scope module: :customer do
     root to: 'homes#top'  #topページ
 
-    get "about" => "homes#about", as: "about"
-
-    get 'customers/my_page' => "customers#show", as: "my_page"
-    get "customers/information/edit" => "customers#edit", as: "edit_customer"
-    patch "customers/information" => "customers#update", as: "customer"
+    get "customers/information/edit" => "customers#edit"
+    patch "customers/information" => "customers#update", as: "update_customer"
     get "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
     patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
-    resources :customers, only: [:update]
 
-  end
+    resources :customers, only: [:update, :show, :edit]
 
-  # 管理者用
-  namespace :admin do
-    root to: 'homes#top'
-    resources :genres, only: [:new, :create, :edit, :index, :update]
-    resources :customers, only: [:show, :edit, :index, :update]
+    resources :resipes, only: [:index, :show, :new, :edit, :update, :create] do
+      resource :likes, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create]
+    end
 
+    resources :ranks, only: [:index]
 
+    resources :favorites, only: [:index]
 
-  end
-
-
-
-
+    resources :genres, only: :index
 
 end
 
+  # 管理者用
+  namespace :admin do
+
+    resources :genres, only: [:new, :create, :edit, :index, :update]
+    resources :customers, only: [:show, :edit, :index, :update]
+    root to: 'resipes#index'  #topページ
+    resources :resipes, only: [:show, :edit, :update]
+    resources :comments, only: [:destroy]
+
+
+  end
+
+end

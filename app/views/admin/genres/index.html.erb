@@ -1,26 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class= "h5 bg-secondary mt-5">ジャンル一覧</div>
-        <table class="col-lg-8 offset-lg-2 mt-4">
-           <thead class="bg-secondary text-center">
-            <tr class="row">
-              <th class="col-lg-1">ID</th>
-              <th class="col-lg-5">ジャンル名</th>
-              <th class="col-lg-3"></th>
+    <div class= "col-lg-6 offset-2 h5 mt-5">ジャンル一覧</div>
+    <div class= "col-lg-3 h5 mt-5 mx-auto text-center"><%= link_to '新規登録', new_admin_genre_path, class: 'nav-link text-dark border rounded mr-5' %></div>
+  </div>
+  <div class="row">
+        <table class="table table-hover mx-auto mt-4">
+           <thead>
+            <tr>
+              <th class="col-1">ID</th>
+              <th class="col-5">ジャンル名</th>
+              <th class="col-3"></th>
             </tr>
            </thead>
 
         <% @genres.each do |genre| %>
-
-
-          <tr>
-            <td class="col-lg-1"><%= genre.id %></td>
-            <td class="col-lg-5"><%= genre.name %></td>
-            <td class="col-lg-3"><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success mt-5' %></td>
-          </tr>
-
-
+            <tr>
+              <td class="col-lg-1"><%= genre.id %></td>
+              <td class="col-lg-5"><%= genre.name %></td>
+              <td class="col-lg-3"><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success mt-5' %></td>
+            </tr>
         <% end %>
-    </table>
+        </table>
   </div>
 </div>

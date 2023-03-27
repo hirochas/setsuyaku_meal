@@ -1,7 +1,10 @@
 class Customer::CustomersController < ApplicationController
+
   def show
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
+    @resipes = @customer.resipes
   end
+
 
   def edit
     @customer = current_customer
@@ -10,7 +13,7 @@ class Customer::CustomersController < ApplicationController
   def update
     customer = current_customer
     customer.update(customer_params)
-    redirect_to my_page_path
+    redirect_to customer_path(current_customer.id)
   end
 
   def withdraw
@@ -19,6 +22,8 @@ class Customer::CustomersController < ApplicationController
     reset_session
     redirect_to root_path
   end
+
+
 
   private
   def customer_params

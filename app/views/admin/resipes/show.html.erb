@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class= "col-lg-6 offset-2 h5 mt-5">
+            レシピ詳細
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-3">
+            <%= image_tag @resipe.get_image(300,300) %>
+          <table class="mt-5">
+              <tr>
+                  <td class="col-1">作成者</td>
+                  <td class="col-2"><%= @resipe.customer.name %></td>
+              </tr>
+              <tr>
+                  <td class="col-1">いいね数</td>
+                  <td class="col-2"><%= @resipe.likes.count %></td>
+              </tr>
+          </table>
+        </div>
+
+        <div class="col-8 offset-1">
+            <table class ="table table-bordered">
+                <tr>
+                    <th class="col-2">ジャンル</th>
+                    <td><%= @resipe.genre.name %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">レシピ名</th>
+                    <td class="col-5"><%= @resipe.name %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">材料</th>
+                    <td class="col-5"><%= h(@resipe.item).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">材料費</th>
+                    <td class="col-5"><%= @resipe.cost %></td>
+                </tr>
+
+                <tr>
+                    <th class="col-2">作り方</th>
+                    <td class="col-5"><%= h(@resipe.how_to_cook).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class= "col-lg-6 offset-2 h5 mt-5">
+            コメント一覧
+        </div>
+        <div class="col-6 offset-4 mt-5">
+            <% @comments.each do |f| %>
+            <div>
+               <%= f.comment_content %>
+
+               <p><%=link_to "削除", admin_comment_path(@comment.id), method: :delete %></p>
+
+               <hr>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

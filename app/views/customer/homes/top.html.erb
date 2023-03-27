@@ -1,2 +1,35 @@
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
+<div class ="container">
+  <div class ="row">
+    <div class="col-4 mt-5">
+      <h3 class="section-ttl">ジャンル一覧</h3>
+    </div>
+  </div>
+  <div class ="row">
+    <div class="col-4">
+    <table class="table border-bottom">
+      <div class="genre mt-5"><% @genres.each do |genre| %>
+
+        <tr>
+          <td class="mt-3"><%= link_to genre.name, resipes_path(genre_id: genre.id) %></td>
+                           <% end %>
+        </tr>
+      </div>
+    </table>
+    </div>
+
+    <div class="col-7 mt-5 offset-1">
+      <h3 class="section-ttl">New Arrival</h3>
+      <table>
+        <div class="resipes mt-5">
+          <% @resipes.each do |resipe| %>
+            <%= image_tag resipe.get_image(200,200) %><br>
+            <%= link_to resipe_path(resipe.id) do %>
+            <p><%= resipe.name %></p>
+            <% end %>
+          <% end %><br>
+        </div>
+      </table>
+    </div>
+
+ </div>
+</div>

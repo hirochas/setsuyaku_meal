@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class= "col-lg-6 offset-2 h5 mt-5">
+      レシピ投稿
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
+
+      <table>
+        <%= form_with model: @resipe, url: resipes_path, method: :post do |f| %>
+        <tr>
+          <th>
+            ジャンル
+          </th>
+          <td>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            レシピ名
+          </th>
+          <td>
+            <%= f.text_field :name, :size=>"60" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            価格（目安)
+          </th>
+          <td>
+            <%= f.text_field :cost, :size=>"60" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            材料
+          </th>
+          <td>
+            <%= f.text_area :item, :size=>"60" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            作り方
+          </th>
+          <td>
+            <%= f.text_area :how_to_cook, :size=>"60" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            画像
+          </th>
+          <td>
+            <%= f.file_field :image, accept: "image/*" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.submit '登録する', class: 'btn btn-success mt-5'  %>
+          </th>
+          <td>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+
+</div>

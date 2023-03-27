@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class= "col-lg-6 offset-2 h5 mt-5">
+            いいねランキング一覧
+        </div>
+    </div>
+
+    <div class="row">
+        <% @all_ranks.each.with_index(1) do |resipe, i| %>
+        <table class="col-8 offset-2 mt-5">
+            <tr>
+                <td>第<%= i %>位</td>
+            </tr>
+            <tr>
+                <td><%= image_tag resipe.get_image(150,150) %></td>
+            </tr>
+            <tr>
+                <td><%= link_to resipe_path(resipe.id) do %>
+                    <%= resipe.name %><% end %></td>
+            </tr>
+        </table>
+        <% end %>
+    </div>
+</div>

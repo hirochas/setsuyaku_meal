@@ -1,24 +1,43 @@
-<div><%= @customer.name %>さんの会員詳細</div>
+<div class="container">
+  <div class="row">
+    <div class= "col-lg-6 offset-2 h5 mt-5"><%= @customer.name %>さんの会員詳細
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>名前（ニックネーム）</th>
-    <td><%= @customer.name %></td>
-  </tr>
+  <div class="row mt-5">
+    <div class="col-5">
+      <table class="table table-bordered">
+         <tr>
+            <th class="col-3">名前<br>(ニックネーム）</th>
+            <td class="col-3"><%= @customer.name %></td>
+         </tr>
+         <tr>
+            <th class="col-3">メールアドレス</th>
+            <td class="col-3"><%= @customer.email %></td>
+         </tr>
+         <tr>
+            <th class="col-3">会員ステータス</th>
+            <td class="col-3"><%= @customer.display_is_deleted %></td>
+         </tr>
+      </table>
+      <div class="mx-auto"><%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success mt-3' %>
+      </div>
+    </div>
 
-   <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
+    <div class="col-lg-6 offset-1">
+      <div class="h5 mb-3">レシピ</div>
+      <% @resipes.each do |resipe| %>
+        <table class="table table-bordered">
+          <tr>
+            <td> <%= image_tag resipe.get_image(150,150) %></td>
+            <td><%= link_to admin_resipe_path(resipe.id) do %>
+              <%= resipe.name %>
+              <% end %></td>
+          </tr>
+        </table>
+      <% end %>
 
-  <tr>
-    <th>会員ステータス</th>
-    <td><%= @customer.is_deleted %></td>
-  </tr>
-</table>
+    </div>
+ </div>
+</div>
 
-
-<div>投稿レシピ一覧</div>
-<div>お気に入りレシピ一覧</div>
-
-<%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success mt-5' %>

@@ -1,10 +1,20 @@
-<div class= "h5 bg-secondary mt-5">ジャンル名編集</div>
+<div class="container">
+  <div class="row">
+    <div class= "col-lg-6 offset-2 h5 mt-5">ジャンル名編集
+    </div>
+  </div>
 
-<%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
-
-<div>ジャンル名</div>
-<div><%= f.text_field :name, :size=>"30", class:"form-control mx-auto" %></div>
-
-<div><%= f.submit "変更を保存", class:"btn btn-success"%></div>
-
-<% end %>
+   <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+   <div class="row">
+      <table class="mx-auto mt-5">
+        <tr>
+          <td class="col-4">ジャンル名</td>
+          <td class="col-8"><%= f.text_field :name, :size=>"60", class:"mx-auto" %></td>
+        </tr>
+      </table>
+   </div>
+   <div class="row">
+      <div class="mx-auto mt-5"><%= f.submit "変更を保存", class:"btn btn-success"%></div>
+      </div>
+   <% end %>
+</div>

@@ -1,27 +1,32 @@
-<div><%= @customer.name %>さんの会員情報編集</div>
+<div class="container">
+  <div class="row">
+    <div class= "col-lg-6 offset-2 h5 mt-5">
+      <%= @customer.name %>さんの会員情報編集
+    </div>
+  </div>
 
-<%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+      <table class="table table-bordered">
+        <tr>
+          <th>名前（ニックネーム）</th>
+          <td><%= f.text_field :name, :size=>"30" %></td>
+        </tr>
 
-<table>
-  <tr>
-    <th>名前（ニックネーム）</th>
-    <td><%= f.text_field :name, :size=>"30" %></td>
-  </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= f.text_field :email, :size=>"30" %></td>
+        </tr>
+      </table>
 
-   <tr>
-    <th>メールアドレス</th>
-    <td><%= f.text_field :email, :size=>"30" %></td>
-  </tr>
-
-  <tr>
-    <th class="col-lg-6">会員ステータス</th>
-    <td><%= f.radio_button :is_deleted, :false %>
-        <%= f.label :is_deleted, "有効" %>
-        <%= f.radio_button :is_deleted, :true %>
-        <%= f.label :is_deleted, "無効" %></td>
-     </tr>
-</table>
-
-<div><%= f.submit '更新', class: 'btn btn-success mt-5' %></div>
-<%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
-<% end %>
+      <table class="mt-5">
+        <tr>
+          <td><%= f.submit '更新する', class: 'btn btn-success mr-5' %></td>
+          <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

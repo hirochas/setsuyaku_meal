@@ -1,21 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class= "h5 bg-secondary mt-5">ジャンル新規登録</div>
-
-    <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
-
-   <table>
-      <tr>
-        <td>ジャンル名</td>
-        <td><%= f.text_field :name, :size=>"30", class:"form-control mx-auto" %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "新規登録", class:"btn btn-success"%></td>
-      </tr>
-
-    <% end %>
+    <div class= "col-lg-6 offset-2 h5 mt-5">ジャンル新規登録
+    </div>
   </div>
+
+  <div class="row">
+      <table class="mx-auto mt-5">
+        <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+        <tr>
+          <td class="col-4">ジャンル名</td>
+          <td class="col-8"><%= f.text_field :name, :size=>"60", class:"mx-auto" %></td>
+        </tr>
+      </table>
+  </div>
+  <div class="row">
+    <div class="mx-auto mt-5">
+      <%= f.submit "新規登録", class:"btn btn-success"%></div>
+      <% end %>
+    </div>
+ </div>
 </div>
-
-
-

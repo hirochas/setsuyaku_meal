@@ -6,7 +6,7 @@ class CreateResipes < ActiveRecord::Migration[6.1]
       t.integer :cost, null: false
       t.string :item, null: false
       t.text :how_to_cook, null: false
-
+      t.integer :genre_id, null: false
       t.timestamps
     end
   end

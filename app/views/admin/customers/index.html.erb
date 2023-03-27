@@ -1,34 +1,29 @@
 <div class="container">
   <div class="row">
-  <div class= "h5 bg-secondary mt-5">会員一覧</div>
- </div>
+    <div class= "col-lg-6 offset-2 h5 mt-5">会員一覧</div>
+  </div>
 
- <div class="row">
-  <table class="col-lg-8 offset-lg-2">
-    <thead class="bg-secondary text-center">
-      <tr class="row">
+  <div class="row mx-auto">
+    <table class="table table-hover mt-4">
+
+      <thead class="text-center">
+        <tr>
           <th class="col-lg-2">ID</th>
           <th class="col-lg-5">氏名（ニックネーム）</th>
           <th class="col-lg-5">メールアドレス</th>
-      </tr>
-    </thead>
-
-    <tbody class="text-center">
-      <% @customers.each do |customer| %>
-      <tr class="row">
-          <td class="col-lg-2"><%= customer.id %></td>
-          <td class="col-lg-5"><%= link_to admin_customer_path(customer.id) do %>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% @customers.each do |customer| %>
+        <tr>
+            <td class="col-lg-2"><%= customer.id %></td>
+            <td class="col-lg-5"><%= link_to admin_customer_path(customer.id) do %>
               <%= customer.name %>
               <% end %></td>
-          <td class="col-lg-5"><%= customer.email %></td>
-      </tr>
+            <td class="col-lg-5"><%= customer.email %></td>
+        </tr>
         <% end %>
-    </tbody>
-
+      </tbody>
     </table>
-
+  </div>
 </div>
-
-  <div class="col-lg-2"></div>
- </div>
-

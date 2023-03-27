@@ -1,23 +1,54 @@
-<div>マイページ</div>
+<div class="container">
+  <div class="row">
+    <div class= "col-lg-6 offset-2 h5 mt-5">マイページ
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>名前（ニックネーム）</th>
-    <td><%= @customer.name %></td>
-  </tr>
+  <div class="row mt-5">
+    <div class="col-5">
+      <table class="table table-bordered">
+        <tr>
+          <th class="col-3">名前<br>（ニックネーム）</th>
+          <td class="col-3"><%= @customer.name %></td>
+        </tr>
 
-   <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
+        <tr>
+          <th class="col-3">メールアドレス</th>
+          <td class="col-3"><%= @customer.email %></td>
+        </tr>
 
-  <tr>
-    <th>会員ステータス</th>
-    <td><%= @customer.is_deleted %></td>
-  </tr>
-</table>
+      </table>
+      <% if @customer == current_customer %>
+      <div class="mx-auto"><%= link_to "編集する", edit_customer_path(@customer.id), class: 'btn btn-success mt-3' %>
+      </div>
+      <% end %>
 
-<div>投稿レシピ一覧</div>
-<div>お気に入りレシピ一覧</div>
+    </div>
 
-<div><%= link_to "編集する", edit_customer_path(@customer.id), class: 'btn btn-success mt-5' %></div>
+    <div class="col-6 offset-1">
+      <table>
+        <tr>
+          <td class="col-3 h4 align-bottom">レシピ</td>
+          <td class="col-3"><%= link_to "作成する", new_resipe_path, class: 'btn btn-success mt-5' %></td>
+          <td class="col-3"><%= link_to "お気に入りレシピ一覧", favorites_path, class: 'btn btn-success mt-5' %></td>
+        </tr>
+      </table>
+    <% if @resipes.present? %>
+      <% @resipes.each do |resipe| %>
+      <table class="table table-bordered mt-3">
+        <tr>
+          <td> <%= image_tag resipe.get_image(200,200) %></td>
+          <td><%= link_to resipe_path(resipe.id) do %>
+              <%= resipe.name %>
+              <% end %></td>
+        </tr>
+      </table>
+      <% end %>
+    <% else %>
+    <div class="mx-auto h4 pt-5">
+      まだレシピはありません。
+    </div>
+    <% end %>
+    </div>
+ </div>
+</div>

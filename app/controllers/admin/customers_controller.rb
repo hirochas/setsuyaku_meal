@@ -5,6 +5,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @resipes = @customer.resipes
   end
 
   def edit
@@ -15,9 +16,6 @@ class Admin::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
     Customer.update(customer_params)
     redirect_to admin_customer_path(customer.id)
-  end
-
-  def unsubscribe
   end
 
    private
