@@ -97,10 +97,12 @@
         <div class= "col-lg-6 offset-2 h5 mt-5">
             コメント一覧
         </div>
-        <div class="col-6 offset-4 mt-5">
-            <% @comments.each do |f| %>
+        <div class="col-6 offset-3 mt-5">
+            <% @comments.each do |comment| %>
             <div>
-               <%= f.comment_content %>
+              <ul>
+               <li><%= comment.comment_content %></li>
+              </ul>
                <hr>
             </div>
             <% end %>
@@ -113,7 +115,7 @@
                 <%= f.text_field :comment_content, :size=>"60" %>
                 <br>
 
-                <%= f.submit 'コメントする', class: 'btn btn-success m-5' %>
+                <%= f.submit 'コメントする', class: 'btn btn-success m-3' %>
             <% end %>
         </div>
     </div>

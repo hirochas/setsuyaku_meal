@@ -55,12 +55,13 @@
             コメント一覧
         </div>
         <div class="col-6 offset-4 mt-5">
-            <% @comments.each do |f| %>
+            <% @comments.each do |comment| %>
             <div>
-               <%= f.comment_content %>
+              <ul>
+            　 <li><%= comment.comment_content %></li>
 
-               <p><%=link_to "削除", admin_comment_path(@comment.id), method: :delete %></p>
-
+               <p><%=link_to "削除", admin_comment_path(comment.id), method: :delete, data: {confirm: "削除しますか？"} %></p>
+              </ul>
                <hr>
             </div>
             <% end %>
