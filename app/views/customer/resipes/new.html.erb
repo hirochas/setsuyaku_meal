@@ -7,9 +7,9 @@
 
   <div class="row">
     <div class="mx-auto">
-
+    <%= form_with model: @resipe, url: resipes_path, method: :post do |f| %>
       <table>
-        <%= form_with model: @resipe, url: resipes_path, method: :post do |f| %>
+
         <tr>
           <th>
             ジャンル
@@ -65,9 +65,9 @@
           <td>
           </td>
         </tr>
-        <% end %>
-      </table>
 
+      </table>
+      <% end %>
     </div>
   </div>
 
