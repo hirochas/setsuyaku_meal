@@ -18,7 +18,7 @@ class Customer::SessionsController < Devise::SessionsController
   def create
     #binding.pry
     @customer = Customer.find_by(email: params[:customer][:email])
-    if @customer.is_deleted == true
+    if @customer.nil? || @customer.is_deleted == true
       redirect_to new_customer_session_path
     else
       super
